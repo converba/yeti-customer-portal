@@ -1,0 +1,18 @@
+{
+  "name": "yeti-customer-portal",
+  "version": "0.0.1",
+  "author": "Yeti Customer Portal",
+  "homepage": "",
+  "license": "Apache License 2.0",
+  "private": true,
+  "scripts": {
+    "dev": "gulp"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.26.5",
+    "gulp": "^4.0.2",
+    "gulp-clean": "^0.4.0",
+    "gulp-sass": "^4.0.2",
+    "requirejs": "^2.3.6"
+  }
+}
