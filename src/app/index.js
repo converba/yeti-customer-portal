@@ -1,14 +1,17 @@
 define(function (require) {
-  var Vue = require('vue')
-  var Router = require('vue-router')
-  var Vuetify = require('vuetify')
+  var Vue = require('vue');
+  var Vuex = require('vuex');
+  var Router = require('vue-router');
+  var Vuetify = require('vuetify');
+  var store = require('../store/index');
 
-  var plugins = require('../plugins/index')
+  var plugins = require('../plugins/index');
 
-  var AppRoot = require('../app/root')
-  var Home = require('../app/pages/home')
+  var AppRoot = require('../app/root');
+  var Home = require('../app/pages/home');
 
-  Vue.use(Router)
+  Vue.use(Vuex);
+  Vue.use(Router);
   Vue.use(Vuetify, {
     theme: {
       primary: '#3f51b5',
@@ -16,7 +19,7 @@ define(function (require) {
       accent: '#8c9eff',
       error: '#b71c1c'
     }
-  })
+  });
 
   var router = new Router({
     /* mode: 'history',
@@ -28,7 +31,7 @@ define(function (require) {
         component: Home
       }
     ]
-  })
+  });
 
 
   if(plugins && plugins.modules) {
@@ -60,6 +63,7 @@ define(function (require) {
 
   new Vue({
     router: router,
+    store: store,
     render: h => h(AppRoot),
   }).$mount(`#app`);
 

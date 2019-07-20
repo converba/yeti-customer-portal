@@ -1,9 +1,12 @@
 define(function (require) {
-  var plugins = require('../plugins/index')
+  var plugins = require('../plugins/index');
+  var Auth = require('../app/components/Auth');
 
   return {
     name: 'App',
-    components: {},
+    components: {
+      Auth: Auth
+    },
     data () {
       return {
         drawer: null,
@@ -16,7 +19,25 @@ define(function (require) {
       }
     },
     mounted () {
-      this.$set(this, 'plugins', plugins.modules)
+      this.$set(this, 'plugins', plugins.modules);
+    },
+    computed: {
+      authToken: {
+        set(authToken) {
+          this.$store.dispatch('setAuthToken', authToken)
+        },
+        get() {
+          return this.$store.getters.authToken
+        }
+      },
+      showAuthDialog: {
+        set(showDialog) {
+          this.$store.dispatch('setShowAuthDialog', showDialog)
+        },
+        get() {
+          return this.$store.getters.showAuthDialog
+        }
+      }
     },
     template: `
       <v-app>
@@ -25,7 +46,8 @@ define(function (require) {
           absolute
           temporary
         >
-          <v-list>
+          <v-list class="pt-0" dense>
+            <v-divider></v-divider>
             <v-list-tile @click="goTo('/')">
               <v-list-tile-action>
                 <v-icon>home</v-icon>
@@ -61,10 +83,10 @@ define(function (require) {
         <v-toolbar dark color="primary">
           <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
       
-          <v-toolbar-title class="white--text">Title</v-toolbar-title>
+          <v-toolbar-title class="white--text">Yeti Customer Portal</v-toolbar-title>
       
           <v-spacer></v-spacer>
-      
+
           <v-btn icon>
             <v-icon>search</v-icon>
           </v-btn>
@@ -76,6 +98,30 @@ define(function (require) {
           <v-btn icon>
             <v-icon>refresh</v-icon>
           </v-btn>
+          
+          <v-flex
+            v-if="authToken" 
+            shrink
+            ml-2
+            mr-3
+          >
+            User Name
+          </v-flex>
+
+          <v-avatar
+            v-if="authToken"
+            size="32px"
+          >
+            <img
+              src="https://avatars0.githubusercontent.com/u/9064066?v=4&s=460"
+              alt="Avatar"
+            >
+          </v-avatar>
+          <v-btn
+            v-else
+            flat
+            @click.stop="showAuthDialog = true"
+          >Sign In</v-btn>
       
           <v-btn icon>
             <v-icon>more_vert</v-icon>
@@ -85,6 +131,7 @@ define(function (require) {
         <v-content>
           <v-container fluid>
             <router-view></router-view>
+            <auth></auth>
           </v-container>
         </v-content>
         <v-footer app></v-footer>
