@@ -5,10 +5,33 @@ define(function (require) {
     data() {
       return {
         title: 'Plugin 1',
+        snackbar: false,
+        y: 'top',
+        x: 'right',
+        timeout: 6000,
+        text: 'Hello, I\'m a snackbar'
       };
     },
     template: `
       <v-layout id="plugin1" align-center>
+        <v-snackbar
+          v-model="snackbar"
+          multi-line
+          right
+          timeout="3000"
+          top
+        >
+          {{ text }}
+          <v-btn
+            color="pink"
+            flat
+            @click="snackbar = false"
+          >
+            Close
+          </v-btn>
+        </v-snackbar>
+      
+      
         <v-flex>
           <h3 class="title">{{ title }}</h3>
           <div id="plugin1-canvas"></div>
@@ -19,14 +42,16 @@ define(function (require) {
             class="mx-0"
             color="primary"
             large
+            @click="snackbar = true"
           >
-            See more
+            Show snackbar
           </v-btn>
         </v-flex>
       </v-layout>
     `,
     methods: {
-      render: function () {}
+      render: function () {},
+      show: function () {}
     },
     mounted: function() {
       let self = this

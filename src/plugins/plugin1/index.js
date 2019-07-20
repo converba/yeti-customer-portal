@@ -7,8 +7,8 @@
 
 define(function (require) {
   var Main = require('../plugin1/main')
-  console.log('Main:')
-  console.log('main')
+  require('../plugin1/lib/vanillatoasts')
+
 
   function install (Vue, options) {
     // eslint-disable-next-line
