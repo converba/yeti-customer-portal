@@ -28,3 +28,6 @@ Thumbs.db
 # Folders to ignore
 node_modules
 dist
+
+#configs and private data
+src/config.js
