@@ -6,10 +6,24 @@ define(function (require) {
   Vue.use(Vuex);
 
   return new Vuex.Store({
-    state: {},
-    actions: {},
-    mutations: {},
-    getters: {},
+    state: {
+      showDrawer: false
+    },
+    actions: {
+      setShowDrawer ({commit}, showDrawer) {
+        commit('SET_SHOW_DRAWER', showDrawer)
+      },
+    },
+    mutations: {
+      SET_SHOW_DRAWER (state, showDrawer) {
+        Vue.set(state, 'showDrawer', showDrawer)
+      },
+    },
+    getters: {
+      showDrawer (state) {
+        return state.showDrawer
+      },
+    },
     modules: {
       auth: auth
     }
