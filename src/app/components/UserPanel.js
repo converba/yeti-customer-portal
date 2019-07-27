@@ -40,21 +40,17 @@ define(function (require) {
     >
       <template v-slot:activator="{ on }">
         <v-btn
+          icon
           flat
           ml-2
           mr-3
           v-on="on"
         >
-          <v-flex mr-3>User Name</v-flex>
           <v-avatar
             v-if="authToken"
             size="32px"
           >
             <v-icon>person</v-icon>
-            <!--<img
-              src="https://avatars0.githubusercontent.com/u/9064066?v=4&s=460"
-              alt="Avatar"
-            >-->
           </v-avatar>
         </v-btn>
       </template>
@@ -62,7 +58,7 @@ define(function (require) {
         <v-list-tile
           @click="logout"
         >
-          <v-list-tile-title>Logout</v-list-tile-title>
+          <v-list-tile-title>{{ $t('core.auth.logOut') }}</v-list-tile-title>
         </v-list-tile>
       </v-list>
     </v-menu>
@@ -72,7 +68,7 @@ define(function (require) {
       flat
       @click.stop="showAuthDialog = true"
     >
-      Sign In
+      {{ $t('core.auth.logIn') }}
     </v-btn>
   `
   }

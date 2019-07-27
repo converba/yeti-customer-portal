@@ -23,7 +23,7 @@ define(function (require) {
       <v-toolbar dark color="primary">
           <v-toolbar-side-icon @click.stop="showDrawer = !showDrawer"></v-toolbar-side-icon>
       
-          <v-toolbar-title class="white--text">Yeti Customer Portal</v-toolbar-title>
+          <v-toolbar-title class="white--text">{{ $t('core.header.title') }}</v-toolbar-title>
       
           <v-spacer></v-spacer>
 

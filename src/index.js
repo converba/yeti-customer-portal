@@ -5,7 +5,9 @@ require.config({
     'vue': 'vue.min',
     'vue-router': 'vue-router.min',
     'vuetify': 'vuetify/vuetify',
-    'vuex': 'vuex.min'
+    'vuex': 'vuex.min',
+    'vue-i18n': 'vue-i18n.min',
+    'lodash': 'lodash.min'
   }
 });
 

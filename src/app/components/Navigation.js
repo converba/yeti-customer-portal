@@ -11,11 +11,14 @@ define(function (require) {
       };
     },
     mounted () {
-      this.$set(this, 'plugins', plugins.modules);
+      this.plugins = plugins.modules;
     },
     methods: {
       goTo: function (page) {
         this.$router.push(page)
+      },
+      getMenuTitle: function (pluginName) {
+        return this.$t(pluginName + '.menuTitle')
       }
     },
     computed: {
@@ -26,7 +29,7 @@ define(function (require) {
         get() {
           return this.$store.getters.showDrawer
         }
-      }
+      },
     },
     template: `
       <v-navigation-drawer
@@ -40,7 +43,7 @@ define(function (require) {
               <v-list-tile-action>
                 <v-icon>home</v-icon>
               </v-list-tile-action>
-              <v-list-tile-title>Home</v-list-tile-title>
+              <v-list-tile-title>{{ $t('core.navigation.home') }}</v-list-tile-title>
             </v-list-tile>
       
             <v-list-group
@@ -49,7 +52,7 @@ define(function (require) {
             >
               <template v-slot:activator>
                 <v-list-tile>
-                  <v-list-tile-title>Modules</v-list-tile-title>
+                  <v-list-tile-title>{{ $t('core.navigation.modules') }}</v-list-tile-title>
                 </v-list-tile>
               </template>
               
@@ -61,7 +64,7 @@ define(function (require) {
                   <v-list-tile-avatar>
                     <v-icon>extension</v-icon>
 </v-list-tile-avatar>
-                  <v-list-tile-title v-text="plugin"></v-list-tile-title>
+                  <v-list-tile-title v-text="getMenuTitle(plugin)"></v-list-tile-title>
               </v-list-tile>
             </v-list-group>
           </v-list>

@@ -4,11 +4,11 @@ define(function (require) {
   var Router = require('vue-router');
   var Vuetify = require('vuetify');
   var store = require('../store/index');
-
   var plugins = require('../plugins/index');
-
   var AppRoot = require('../app/root');
   var Home = require('../app/pages/home');
+  var i18n = require('../app/i18n/index');
+
 
   Vue.use(Vuex);
   Vue.use(Router);
@@ -33,14 +33,13 @@ define(function (require) {
     ]
   });
 
-
   if(plugins && plugins.modules) {
+    // load plugins
     let modules = plugins.modules;
     let modulesArr = modules.map(function(name) {
       return '../plugins/' + name + '/index';
     });
 
-    // Apply plugins
     require(modulesArr, function (module) {
       for(let i = 0, len = arguments.length; i < len; i++) {
         Vue.use(arguments[i], {
@@ -50,8 +49,8 @@ define(function (require) {
     });
 
     // Add CSS of modules
-    let styleNode = document.createElement('style')
-    let stylesStr = ''
+    let styleNode = document.createElement('style');
+    let stylesStr = '';
     for(let i=0, len = modules.length; i<len; i++) {
       stylesStr += '@import url("' +
         './plugins/' + modules[i] + '/' + modules[i] + '.css'
@@ -65,6 +64,7 @@ define(function (require) {
     router: router,
     store: store,
     render: h => h(AppRoot),
+    i18n: i18n
   }).$mount(`#app`);
 
   return {}

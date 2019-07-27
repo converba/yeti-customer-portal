@@ -33,7 +33,7 @@ define(function (require) {
       
       
         <v-flex>
-          <h3 class="title">{{ title }}</h3>
+          <h3 class="title">{{ $t('plugin1.title') }}</h3>
           <div id="plugin1-canvas"></div>
           <span class="subheading">Lorem ipsum dolor sit amet, pri veniam forensibus id. Vis maluisset molestiae id, ad semper lobortis cum. At impetus detraxit incorrupte usu, repudiare assueverit ex eum, ne nam essent vocent admodum.</span>
           <v-divider class="my-3"></v-divider>

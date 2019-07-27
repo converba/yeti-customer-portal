@@ -10,7 +10,7 @@ define(function (require) {
     template: `
       <div id="plugin2" class="row">
         <div class="col">
-          <h1 class="h4">{{ title }}</h1>
+          <h1 class="h4">{{ $t('plugin2.title') }}</h1>
         </div>
       </div>
     `,
@@ -20,8 +20,8 @@ define(function (require) {
       }
     },
     mounted: function() {
-      console.log('mounted')
-      let self = this
+      console.log('mounted');
+      let self = this;
       window.addEventListener('load', () => {
         self.render()
       })

@@ -25,6 +25,6 @@ define(function (require) {
         </v-content>
         <v-footer app></v-footer>
       </v-app>
-    `,
+    `
   };
 });
