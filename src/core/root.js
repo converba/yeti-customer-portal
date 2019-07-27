@@ -1,7 +1,7 @@
 define(function (require) {
-  var Auth = require('../app/components/Auth');
-  var Navigation = require('../app/components/Navigation');
-  var Toolbar = require('../app/components/Toolbar');
+  var Auth = require('../core/components/Auth');
+  var Navigation = require('../core/components/Navigation');
+  var Toolbar = require('../core/components/Toolbar');
 
   return {
     name: 'App',

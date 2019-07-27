@@ -5,9 +5,9 @@ define(function (require) {
   var Vuetify = require('vuetify');
   var store = require('../store/index');
   var plugins = require('../plugins/index');
-  var AppRoot = require('../app/root');
-  var Home = require('../app/pages/home');
-  var i18n = require('../app/i18n/index');
+  var AppRoot = require('../core/root');
+  var Home = require('../core/pages/home');
+  var i18n = require('../core/i18n/index');
 
 
   Vue.use(Vuex);
