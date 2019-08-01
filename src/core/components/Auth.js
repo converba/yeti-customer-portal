@@ -1,6 +1,4 @@
 define(function (require) {
-  var Auth = require('../../api/Auth');
-
   return {
     name: 'Auth',
     components: {},
@@ -16,17 +14,10 @@ define(function (require) {
       signIn: function () {
         var self = this;
         this.$set(this, 'showAuthDialog', false);
-        Auth.getToken({
+        this.$store.dispatch('loadAuthToken', {
           login: this.login,
           password: this.password
-        }).then(function (data) {
-          if (data && data.jwt) {
-            self.$set(self, 'authToken', data.jwt);
-            if(!self.highPrivacyMode) {
-              window.localStorage.setItem('authToken', data.jwt);
-            }
-          }
-        })
+        });
       },
       openDialog: function () {
         this.$set(this, 'showAuthDialog', true);

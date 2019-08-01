@@ -1,7 +1,7 @@
 define(function (require) {
   return {
     modules: [
-      'plugin1',
+      'accounts',
       'plugin2'
     ]
   }

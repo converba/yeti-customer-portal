@@ -2,6 +2,7 @@ define(function (require) {
   var Vue = require('vue');
   var Vuex = require('vuex');
   var auth = require('../store/modules/auth');
+  var accounts = require('../store/modules/accounts');
 
   Vue.use(Vuex);
 
@@ -25,7 +26,8 @@ define(function (require) {
       },
     },
     modules: {
-      auth: auth
+      auth: auth,
+      accounts: accounts
     }
   })
 });

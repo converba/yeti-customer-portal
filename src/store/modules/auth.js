@@ -1,5 +1,6 @@
 define(function (require) {
   var Vue = require('vue');
+  var authService = require('../../services/Auth.js');
 
   return {
     state: {
@@ -7,11 +8,18 @@ define(function (require) {
       showAuthDialog: false
     },
     actions: {
-      setAuthToken ({commit}, authToken) {
+      setAuthToken ({ commit }, authToken) {
         commit('SET_AUTH_TOKEN', authToken)
       },
-      setShowAuthDialog ({commit}, showDialog) {
+      setShowAuthDialog ({ commit }, showDialog) {
         commit('SET_SHOW_AUTH_DIALOG', showDialog)
+      },
+      async loadAuthToken({ commit }, userData, highPrivacyMode) {
+        const token = await authService.getToken(userData);
+        commit('SET_AUTH_TOKEN', token)
+        if(highPrivacyMode !== true) {
+          window.localStorage.setItem('authToken', token);
+        }
       }
     },
     mutations: {
