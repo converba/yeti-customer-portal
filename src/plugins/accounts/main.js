@@ -7,14 +7,26 @@ define(function (require) {
         title: 'Accounts',
         headers: [
           {
-            text: 'Name',
+            text: this.$t('accounts.table.headers.name'),
             align: 'left',
             value: 'attributes.name',
           },
-          { text: 'Balance', value: 'attributes.balance' },
-          { text: 'Min. Balance', value: 'attributes.min-balance' },
-          { text: 'Max. Balance', value: 'attributes.max-balance' },
-          { text: 'Origination Capacity', value: 'attributes.origination-capacity' }
+          {
+            text: this.$t('accounts.table.headers.balance'),
+            value: 'attributes.balance'
+          },
+          {
+            text: this.$t('accounts.table.headers.minBalance'),
+            value: 'attributes.min-balance'
+          },
+          {
+            text: this.$t('accounts.table.headers.maxBalance'),
+            value: 'attributes.max-balance'
+          },
+          {
+            text: this.$t('accounts.table.headers.originationCapacity'),
+            value: 'attributes.origination-capacity'
+          }
         ]
       };
     },
@@ -25,6 +37,7 @@ define(function (require) {
         </v-flex>
         <v-flex xs12>
           <v-data-table
+            v-if="accounts.length > 0"
             :headers="headers"
             :items="accounts"
             :items-per-page="5"
@@ -36,18 +49,36 @@ define(function (require) {
               <td>{{ props.item.attributes['min-balance'] }}</td>
               <td>{{ props.item.attributes['max-balance'] }}</td>
               <td>{{ props.item.attributes['origination-capacity'] }}</td>
-          </template>
+            </template>
           </v-data-table>
+          <div v-else>
+            {{ $t('accounts.noAccountsMessage') }}
+          </div>
         </v-flex>
       </v-layout>
     `,
     computed: {
-      accounts: function () {
+      accounts () {
         return this.$store.getters.accounts
+      },
+      isAuthorized () {
+        return this.$store.getters.isAuthorized
+      },
+      authToken () {
+        return this.$store.getters.authToken
       }
     },
-    mounted: function() {
-      this.$store.dispatch('loadAccounts', this.$store.getters.authToken);
+    watch: {
+      isAuthorized (isAuthorized) {
+        if(isAuthorized) {
+          this.$store.dispatch('loadAccounts', this.authToken);
+        } else {
+          this.$store.dispatch('setAccounts', []);
+        }
+      }
+    },
+    mounted () {
+      this.$store.dispatch('loadAccounts', this.authToken);
     }
   }
 });
