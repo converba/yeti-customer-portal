@@ -11,7 +11,10 @@ define(function (require) {
     },
     methods: {
       logout: function () {
-        this.$set(this, 'authToken', '');
+        this.authToken = '';
+        this.login = '';
+        this.password = '';
+        this.$store.dispatch('setAuthorizedStatus', false);
         window.localStorage.removeItem('authToken');
       }
     },

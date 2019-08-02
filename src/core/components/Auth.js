@@ -12,21 +12,22 @@ define(function (require) {
 
     methods: {
       signIn: function () {
-        var self = this;
-        this.$set(this, 'showAuthDialog', false);
+        this.showAuthDialog = false;
         this.$store.dispatch('loadAuthToken', {
           login: this.login,
           password: this.password
         });
+        this.login = '';
+        this.password = '';
       },
       openDialog: function () {
-        this.$set(this, 'showAuthDialog', true);
+        this.showAuthDialog = true;
       }
     },
     created: function (){
       var authToken = window.localStorage.getItem('authToken');
       if(authToken) {
-        this.$set(this, 'authToken', authToken);
+        this.authToken = authToken;
       }
     },
     computed: {
