@@ -26,19 +26,11 @@ define(function (require) {
           <v-toolbar-title class="white--text">{{ $t('core.header.title') }}</v-toolbar-title>
       
           <v-spacer></v-spacer>
-
-          <v-btn icon>
-            <v-icon>search</v-icon>
-          </v-btn>
       
           <v-btn icon>
             <v-icon>apps</v-icon>
           </v-btn>
       
-          <v-btn icon>
-            <v-icon>refresh</v-icon>
-          </v-btn>
-          
           <user-panel></user-panel>
       
           <v-btn icon>
