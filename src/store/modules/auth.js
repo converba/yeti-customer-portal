@@ -5,7 +5,8 @@ define(function (require) {
   return {
     state: {
       authToken: '',
-      showAuthDialog: false
+      showAuthDialog: false,
+      isAuthorized: false
     },
     actions: {
       setAuthToken ({ commit }, authToken) {
@@ -14,12 +15,29 @@ define(function (require) {
       setShowAuthDialog ({ commit }, showDialog) {
         commit('SET_SHOW_AUTH_DIALOG', showDialog)
       },
-      async loadAuthToken({ commit }, userData, highPrivacyMode) {
-        const token = await authService.getToken(userData);
-        commit('SET_AUTH_TOKEN', token)
-        if(highPrivacyMode !== true) {
-          window.localStorage.setItem('authToken', token);
-        }
+      setAuthorizedStatus ({ commit }, isAuthorized) {
+        commit('SET_AUTHORIZED_STATUS', isAuthorized)
+      },
+      loadAuthToken({ commit }, userData, highPrivacyMode) {
+        authService.getToken(userData)
+          .catch((err) => {
+            commit('SET_AUTH_TOKEN', '');
+            commit('SET_AUTHORIZED_STATUS', false);
+            window.localStorage.removeItem('authToken');
+          })
+          .then(function (token) {
+            if(token) {
+              commit('SET_AUTH_TOKEN', token);
+              commit('SET_AUTHORIZED_STATUS', true);
+              if(highPrivacyMode !== true) {
+                window.localStorage.setItem('authToken', token);
+              }
+            } else {
+              commit('SET_AUTH_TOKEN', '');
+              commit('SET_AUTHORIZED_STATUS', false);
+              window.localStorage.removeItem('authToken');
+            }
+          });
       }
     },
     mutations: {
@@ -28,11 +46,17 @@ define(function (require) {
       },
       SET_SHOW_AUTH_DIALOG (state, showDialog) {
         Vue.set(state, 'showAuthDialog', showDialog)
+      },
+      SET_AUTHORIZED_STATUS (state, isAuthorized) {
+        Vue.set(state, 'isAuthorized', isAuthorized)
       }
     },
     getters: {
       authToken (state) {
         return state.authToken
+      },
+      isAuthorized (state) {
+        return state.isAuthorized
       },
       showAuthDialog (state) {
         return state.showAuthDialog
