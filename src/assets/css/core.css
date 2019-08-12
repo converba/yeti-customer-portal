@@ -1,3 +1,4 @@
 @import "font-roboto.css";
-@import "material-icons.css";
+@import "materialdesignicons.min.css";
 @import "../../lib/vuetify/vuetify.min.css";
+@import "form.css";

@@ -7,9 +7,21 @@ define(function (require) {
       accounts: []
     },
     actions: {
-      async loadAccounts ({ commit }, data) {
-        let accountsList = await accountsService.getAccounts(data);
-        commit('SET_ACCOUNTS', accountsList)
+      loadAccounts ({ commit }, data) {
+        accountsService.getAccounts(data)
+          .then(function (accountsList) {
+            if(accountsList) {
+              commit('SET_ACCOUNTS', accountsList)
+            }
+          })
+          .catch((error) => {
+            if (error) {
+              commit('SET_AUTH_TOKEN', '');
+              commit('SET_AUTHORIZED_STATUS', false);
+              commit('SET_SHOW_AUTH_DIALOG', true);
+              window.localStorage.removeItem('authToken');
+            }
+          });
       },
       setAccounts ({ commit }, accountsList) {
         commit('SET_ACCOUNTS', accountsList)

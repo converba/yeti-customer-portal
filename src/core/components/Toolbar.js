@@ -20,23 +20,37 @@ define(function (require) {
       },
     },
     template: `
-      <v-toolbar dark color="primary">
-          <v-toolbar-side-icon @click.stop="showDrawer = !showDrawer"></v-toolbar-side-icon>
+      <v-card
+          color="grey lighten-4"
+          flat
+          tile
+        >
+          <v-toolbar 
+            dense
+            dark 
+            color="primary"
+          >
+            <v-app-bar-nav-icon @click.stop="showDrawer = !showDrawer">
+              <v-icon>mdi-menu</v-icon>
+            </v-app-bar-nav-icon>
       
-          <v-toolbar-title class="white--text">{{ $t('core.header.title') }}</v-toolbar-title>
+            <v-toolbar-title class="white--text">{{ $t('core.header.title') }}</v-toolbar-title>
       
-          <v-spacer></v-spacer>
-      
-          <v-btn icon>
-            <v-icon>apps</v-icon>
-          </v-btn>
-      
-          <user-panel></user-panel>
-      
-          <v-btn icon>
-            <v-icon>more_vert</v-icon>
-          </v-btn>
-        </v-toolbar>
+            <v-spacer></v-spacer>
+
+            <v-toolbar-items>
+              <v-btn icon>
+                <v-icon>mdi-apps</v-icon>
+              </v-btn>
+          
+              <user-panel></user-panel>
+          
+              <v-btn icon>
+                <v-icon>mdi-dots-vertical</v-icon>
+              </v-btn>
+          </v-toolbar-items>
+          </v-toolbar>
+        </v-card>
     `,
   };
 });

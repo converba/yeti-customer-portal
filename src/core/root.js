@@ -15,8 +15,8 @@ define(function (require) {
     },
     template: `
       <v-app>
-        <navigation></navigation>
         <toolbar></toolbar>
+        <navigation></navigation>
         <v-content>
           <v-container fluid>
             <router-view></router-view>

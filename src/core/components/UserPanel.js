@@ -44,7 +44,7 @@ define(function (require) {
       <template v-slot:activator="{ on }">
         <v-btn
           icon
-          flat
+          text
           ml-2
           mr-3
           v-on="on"
@@ -53,22 +53,22 @@ define(function (require) {
             v-if="authToken"
             size="32px"
           >
-            <v-icon>person</v-icon>
+            <v-icon>mdi-account</v-icon>
           </v-avatar>
         </v-btn>
       </template>
       <v-list>
-        <v-list-tile
+        <v-list-item
           @click="logout"
         >
-          <v-list-tile-title>{{ $t('core.auth.logOut') }}</v-list-tile-title>
-        </v-list-tile>
+          <v-list-item-title>{{ $t('core.auth.logOut') }}</v-list-item-title>
+        </v-list-item>
       </v-list>
     </v-menu>
 
     <v-btn
       v-else
-      flat
+      text
       @click.stop="showAuthDialog = true"
     >
       {{ $t('core.auth.logIn') }}

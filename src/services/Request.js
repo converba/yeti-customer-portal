@@ -22,7 +22,6 @@ define(function (require) {
 
   return {
     send (args) {
-      // api, method, postData
       if(!args.api) {
         throw new Error('Request error: api not found')
       }

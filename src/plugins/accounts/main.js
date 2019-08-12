@@ -4,7 +4,6 @@ define(function (require) {
     components: {},
     data() {
       return {
-        title: 'Accounts',
         headers: [
           {
             text: this.$t('accounts.table.headers.name'),

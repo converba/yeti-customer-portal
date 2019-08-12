@@ -8,16 +8,26 @@ define(function (require) {
   var AppRoot = require('../core/root');
   var Home = require('../core/pages/home');
   var i18n = require('../core/i18n/index');
-
+  var VueMoment = require('vue-moment');
 
   Vue.use(Vuex);
   Vue.use(Router);
-  Vue.use(Vuetify, {
+  Vue.use(Vuetify);
+  Vue.use(VueMoment.install);
+
+  const vuetify = new Vuetify({
     theme: {
-      primary: '#3f51b5',
-      secondary: '#b0bec5',
-      accent: '#8c9eff',
-      error: '#b71c1c'
+      themes: {
+        light: {
+          primary: '#3f51b5',
+          secondary: '#b0bec5',
+          accent: '#8c9eff',
+          error: '#b71c1c'
+        }
+      }
+    },
+    icons: {
+      iconfont: 'mdi'
     }
   });
 
@@ -60,12 +70,11 @@ define(function (require) {
     document.body.appendChild(styleNode);
   }
 
-  new Vue({
+  return new Vue({
     router: router,
     store: store,
+    vuetify: vuetify,
     render: h => h(AppRoot),
     i18n: i18n
   }).$mount(`#app`);
-
-  return {}
 });

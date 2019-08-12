@@ -3,6 +3,7 @@ define(function (require) {
   var Vuex = require('vuex');
   var auth = require('../store/modules/auth');
   var accounts = require('../store/modules/accounts');
+  var cdrs = require('../store/modules/cdrs');
 
   Vue.use(Vuex);
 
@@ -27,7 +28,8 @@ define(function (require) {
     },
     modules: {
       auth: auth,
-      accounts: accounts
+      accounts: accounts,
+      cdrs: cdrs
     }
   })
 });

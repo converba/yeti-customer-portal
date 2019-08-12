@@ -72,8 +72,8 @@ define(function (require) {
             </v-card-text>
             <v-card-actions>
               <v-spacer></v-spacer>
-              <v-btn color="blue darken-1" flat @click="showAuthDialog = false">{{ $t('core.auth.cancel') }}</v-btn>
-              <v-btn color="blue darken-1" flat @click="signIn">{{ $t('core.auth.logIn') }}</v-btn>
+              <v-btn color="blue darken-1" text @click="showAuthDialog = false">{{ $t('core.auth.cancel') }}</v-btn>
+              <v-btn color="blue darken-1" text @click="signIn">{{ $t('core.auth.logIn') }}</v-btn>
             </v-card-actions>
           </v-card>
         </v-dialog>

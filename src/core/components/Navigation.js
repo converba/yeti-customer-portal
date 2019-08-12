@@ -37,36 +37,32 @@ define(function (require) {
           absolute
           temporary
         >
-          <v-list class="pt-0" dense>
-            <v-divider></v-divider>
-            <v-list-tile @click="goTo('/')">
-              <v-list-tile-action>
-                <v-icon>home</v-icon>
-              </v-list-tile-action>
-              <v-list-tile-title>{{ $t('core.navigation.home') }}</v-list-tile-title>
-            </v-list-tile>
-      
-            <v-list-group
-              prepend-icon="account_circle"
-              value="true"
+          <v-list dense>
+            <v-list-item 
+              link
+              @click="goTo('/')"
             >
-              <template v-slot:activator>
-                <v-list-tile>
-                  <v-list-tile-title>{{ $t('core.navigation.modules') }}</v-list-tile-title>
-                </v-list-tile>
-              </template>
-              
-              <v-list-tile
-                  v-for="(plugin, i) in plugins"
-                  :key="i"
-                  @click="goTo(plugin)"
-                >
-                  <v-list-tile-avatar>
-                    <v-icon>extension</v-icon>
-</v-list-tile-avatar>
-                  <v-list-tile-title v-text="getMenuTitle(plugin)"></v-list-tile-title>
-              </v-list-tile>
-            </v-list-group>
+              <v-list-item-icon>
+                <v-icon>mdi-home</v-icon>
+              </v-list-item-icon>
+              <v-list-item-content>
+                <v-list-item-title>{{ $t('core.navigation.home') }}</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+        
+            <v-list-item 
+              link
+              v-for="(plugin, i) in plugins"
+              :key="i"
+              @click="goTo(plugin)"
+            >
+              <v-list-item-icon>
+                <v-icon>mdi-puzzle</v-icon>
+              </v-list-item-icon>
+              <v-list-item-content>
+                <v-list-item-title>{{ getMenuTitle(plugin) }}</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
           </v-list>
         </v-navigation-drawer>
     `,
