@@ -72,16 +72,15 @@ define(function (require) {
         </v-flex>
         <v-dialog
           v-model="showDialog"
+          scrollable
           max-width="500"
         >
           <v-card v-if="moreInfoData">
-            <!--<v-card-title >Call record details</v-card-title>-->
-
             <v-card-text>
               <v-list-item>
                 <v-list-item-content>
                   <v-list-item-title>
-                    <strong>Call record details</strong>
+                    <strong>{{ $t('cdrs.details.title') }}</strong>
                   </v-list-item-title>
                 </v-list-item-content>
               </v-list-item>
@@ -99,12 +98,11 @@ define(function (require) {
     
             <v-card-actions>
               <v-spacer></v-spacer>
-    
               <v-btn
                 color="primary"
                 @click="showDialog = false"
               >
-                Close
+                {{ $t('cdrs.details.close') }}
               </v-btn>
             </v-card-actions>
           </v-card>

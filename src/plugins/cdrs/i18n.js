@@ -15,13 +15,33 @@ define(function (require) {
             "destinationNextRate": "Destination next rate",
           }
         },
+        "details": {
+          "title": "Call record details",
+          "close": "Close"
+        },
         "noCdrsMessage": "CDRs not found"
       }
     },
     "ru-RU": {
       "cdrs": {
         "title": "Журнал звонков",
-        "menuTitle": "Журнал звонков"
+        "menuTitle": "Журнал звонков",
+        "table": {
+          "headers": {
+            "timeConnect": "Время соединения",
+            "timeEnd": "Время окончания",
+            "duration": "Длительность",
+            "customerPrice": "Клиентская цена",
+            "destinationFee": "Стоимость назначения",
+            "destinationInitialRate": "Начальный курс назначения",
+            "destinationNextRate": "Назначение следующего курса",
+          }
+        },
+        "details": {
+          "title": "Детали звонка",
+          "close": "Закрыть"
+        },
+        "noCdrsMessage": "Звонки не найдены"
       }
     }
   }
