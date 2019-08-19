@@ -55,8 +55,8 @@ define(function (require) {
             <v-card-title>
               <span class="headline">{{ $t('core.auth.logIn') }}</span>
             </v-card-title>
-            <v-card-text>
-              <v-container grid-list-md>
+            <v-card-text class="pb-0">
+              <v-container grid-list-md pa-0>
                 <v-layout wrap>
                   <v-flex xs12>
                     <v-text-field v-model="login" :label="$t('core.auth.login')" required autofocus></v-text-field>
@@ -72,8 +72,8 @@ define(function (require) {
             </v-card-text>
             <v-card-actions>
               <v-spacer></v-spacer>
-              <v-btn color="blue darken-1" text @click="showAuthDialog = false">{{ $t('core.auth.cancel') }}</v-btn>
-              <v-btn color="blue darken-1" text @click="signIn">{{ $t('core.auth.logIn') }}</v-btn>
+              <v-btn color="primary" text @click="signIn">{{ $t('core.auth.logIn') }}</v-btn>
+              <v-btn color="secondary" text @click="showAuthDialog = false">{{ $t('core.auth.cancel') }}</v-btn>
             </v-card-actions>
           </v-card>
         </v-dialog>

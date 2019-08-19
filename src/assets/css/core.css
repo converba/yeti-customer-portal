@@ -2,3 +2,11 @@
 @import "materialdesignicons.min.css";
 @import "../../lib/vuetify/vuetify.min.css";
 @import "form.css";
+
+.v-toolbar__title .v-btn:before {
+  background-color: transparent;
+}
+
+.header-logo {
+  max-height: 36px;
+}

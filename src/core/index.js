@@ -2,7 +2,6 @@ define(function (require) {
   var Vue = require('vue');
   var Vuex = require('vuex');
   var Router = require('vue-router');
-  var Vuetify = require('vuetify');
   var store = require('../store/index');
   var plugins = require('../plugins/index');
   var AppRoot = require('../core/root');
@@ -12,24 +11,7 @@ define(function (require) {
 
   Vue.use(Vuex);
   Vue.use(Router);
-  Vue.use(Vuetify);
   Vue.use(VueMoment.install);
-
-  const vuetify = new Vuetify({
-    theme: {
-      themes: {
-        light: {
-          primary: '#3f51b5',
-          secondary: '#b0bec5',
-          accent: '#8c9eff',
-          error: '#b71c1c'
-        }
-      }
-    },
-    icons: {
-      iconfont: 'mdi'
-    }
-  });
 
   var router = new Router({
     /* mode: 'history',
@@ -73,7 +55,7 @@ define(function (require) {
   return new Vue({
     router: router,
     store: store,
-    vuetify: vuetify,
+    vuetify: require('../core/vuetify'),
     render: h => h(AppRoot),
     i18n: i18n
   }).$mount(`#app`);

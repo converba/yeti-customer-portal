@@ -1,5 +1,6 @@
 define(function (require) {
   var UserPanel = require('../components/UserPanel');
+  var config = require('../../config');
 
   return {
     name: `Toolbar`,
@@ -18,6 +19,22 @@ define(function (require) {
           return this.$store.getters.showDrawer
         }
       },
+      showLogoText () {
+        if(config
+          && config.theme
+          && config.theme.hasOwnProperty('showLogoText')) {
+          return config.theme.showLogoText
+        }
+        return true
+      },
+      logoPath () {
+        if(config
+          && config.theme
+          && config.theme.hasOwnProperty('customLogoPath')) {
+          return config.theme.customLogoPath
+        }
+        return '/assets/img/logo.png'
+      }
     },
     template: `
       <v-card
@@ -33,8 +50,28 @@ define(function (require) {
             <v-app-bar-nav-icon @click.stop="showDrawer = !showDrawer">
               <v-icon>mdi-menu</v-icon>
             </v-app-bar-nav-icon>
-      
-            <v-toolbar-title class="white--text">{{ $t('core.header.title') }}</v-toolbar-title>
+
+            <v-toolbar-title
+              class="px-0"
+            >
+              <v-btn 
+                to="/" 
+                light
+                text
+                class="white--text px-2"
+              >
+                <img
+                  class="mr-2 header-logo"
+                  :src="logoPath"
+                />
+                <span
+                  v-if="showLogoText"
+                  class="ml-1"
+                >
+                  {{ $t('core.header.title') }}
+                </span>
+              </v-btn>
+            </v-toolbar-title>
       
             <v-spacer></v-spacer>
 
