@@ -10,7 +10,8 @@ define(function (require) {
         error: '#b71c1c'
       },
       showLogoText: false, // show title in header near logo
-      customLogoPath: '/assets/img/logo.png' // absolute path or URI
+      customLogoPath: '/assets/img/logo.png', // absolute path or URI
+      customCSSPath: '/assets/css/custom.css' // absolute path for custom theme CSS-file
     }
   };
 });
