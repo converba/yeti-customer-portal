@@ -3,7 +3,8 @@ define(function (require) {
     modules: [
       'accounts',
       'cdrs',
-      'rateplans'
+      'rateplans',
+      'rates'
     ]
   }
 });

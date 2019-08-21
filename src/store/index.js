@@ -5,6 +5,7 @@ define(function (require) {
   var accounts = require('../store/modules/accounts');
   var cdrs = require('../store/modules/cdrs');
   var rateplans = require('../store/modules/rateplans');
+  var rates = require('../store/modules/rates');
 
   Vue.use(Vuex);
 
@@ -31,7 +32,8 @@ define(function (require) {
       auth: auth,
       accounts: accounts,
       cdrs: cdrs,
-      rateplans: rateplans
+      rateplans: rateplans,
+      rates: rates
     }
   })
 });
