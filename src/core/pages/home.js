@@ -1,15 +1,13 @@
 define(function (require) {
+  var Apps = require('../components/Apps');
+
   return {
     name: `Home`,
-    components: {},
+    components: {
+      Apps: Apps
+    },
     template: `
-      <div>
-        <div class="row">
-          <div class="col">
-            <h1 class="h4">{{ $t('core.title') }}</h1>
-          </div>
-        </div>
-      </div>
+      <apps/>
     `,
   };
 });
