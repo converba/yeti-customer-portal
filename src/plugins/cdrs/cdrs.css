@@ -1,1 +1,3 @@
-#plugin2 {}
+.cdrs-plugin-icon.v-icon:before {
+  content:"\F5DA"
+}

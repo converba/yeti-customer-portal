@@ -1,1 +1,3 @@
-#plugin1 {}
+.accounts-plugin-icon.v-icon:before {
+  content:"\F00E"
+}

@@ -76,7 +76,10 @@ define(function (require) {
             <v-spacer></v-spacer>
 
             <v-toolbar-items>
-              <v-btn icon>
+              <v-btn 
+                icon
+                to="/" 
+              >
                 <v-icon>mdi-apps</v-icon>
               </v-btn>
           

@@ -19,11 +19,11 @@ define(function (require) {
         commit('SET_AUTHORIZED_STATUS', isAuthorized)
       },
       loadAuthToken({ commit }, userData, highPrivacyMode) {
+        window.localStorage.removeItem('authToken');
         authService.getToken(userData)
           .catch((err) => {
             commit('SET_AUTH_TOKEN', '');
             commit('SET_AUTHORIZED_STATUS', false);
-            window.localStorage.removeItem('authToken');
           })
           .then(function (token) {
             if(token) {
@@ -35,7 +35,6 @@ define(function (require) {
             } else {
               commit('SET_AUTH_TOKEN', '');
               commit('SET_AUTHORIZED_STATUS', false);
-              window.localStorage.removeItem('authToken');
             }
           });
       }
@@ -53,7 +52,7 @@ define(function (require) {
     },
     getters: {
       authToken (state) {
-        return state.authToken
+        return state.authToken || window.localStorage.getItem('authToken')
       },
       isAuthorized (state) {
         return state.isAuthorized

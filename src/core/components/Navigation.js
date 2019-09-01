@@ -57,7 +57,9 @@ define(function (require) {
               @click="goTo(plugin)"
             >
               <v-list-item-icon>
-                <v-icon>mdi-puzzle</v-icon>
+                <v-icon :class="plugin + '-plugin-icon'">
+                  mdi-puzzle
+                </v-icon>
               </v-list-item-icon>
               <v-list-item-content>
                 <v-list-item-title>{{ getMenuTitle(plugin) }}</v-list-item-title>

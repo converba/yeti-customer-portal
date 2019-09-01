@@ -2,8 +2,7 @@ define(function (require) {
   var Vue = require('vue');
   var Router = require('vue-router');
   var plugins = require('../plugins/index');
-
-  var Home = require('../core/pages/home');
+  var Home = require('../core/pages/Home');
 
   Vue.use(Router);
 

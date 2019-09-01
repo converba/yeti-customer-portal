@@ -3,6 +3,7 @@ define(function (require) {
     "en-US": {
       "rates": {
         "title": "Rates",
+        "description": "Rates app description",
         "menuTitle": "Rates",
         "table": {
           "headers": {
@@ -24,13 +25,14 @@ define(function (require) {
     },
     "ru-RU": {
       "rates": {
-        "title": "Ставки",
-        "menuTitle": "Ставки",
+        "title": "Цены",
+        "description": "Описание модуля Цены",
+        "menuTitle": "Цены",
         "table": {
           "headers": {
             "connectFee": "Плата за подключение",
             "initialInterval": "Начальный интервал",
-            "initialRate": "Начальная ставка",
+            "initialRate": "Начальная цена",
             "networkPrefixId": "Идентификатор сетевого префикса",
             "nextInterval": "Следующий интервал",
             "nextRate": "Следующая оценка",
@@ -41,7 +43,7 @@ define(function (require) {
           },
           "Unknown": "Неизвестно"
         },
-        "noRatesMessage": "Ставки не найдены"
+        "noRatesMessage": "Цены не найдены"
       }
     }
   }

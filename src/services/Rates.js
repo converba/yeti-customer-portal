@@ -2,16 +2,19 @@ define(function (require) {
   var Request = require('../services/Request');
 
   return {
-    getRates (jwt) {
-      if(typeof(jwt) === 'undefined') {
+    getRates (args) {
+      const perPage = args.perPage || '';
+      const page = args.page || '';
+
+      if(!args.jwt) {
         throw new Error('Auth error: didn\'t authorized')
       } else {
         return Request.send({
-          api: 'api/rest/customer/v1/rates',
+          api: `api/rest/customer/v1/rates?per_page=${perPage}&page=${page}`,
           params: {
             method: 'GET',
             headers: {
-              Authorization: jwt
+              Authorization: args.jwt
             }
           }
         }).then(function (response) {
@@ -20,6 +23,42 @@ define(function (require) {
           }
         })
       }
+    },
+    checkRate (args) {
+      if(!args.jwt || typeof(args.jwt) === 'undefined') {
+        throw new Error('Auth error: didn\'t authorized')
+      }
+
+      if(!args.rateplanId) {
+        throw new Error('checkRate error: rateplan id not found')
+      }
+
+      if(!args.number) {
+        throw new Error('checkRate error: number not found')
+      }
+
+      return Request.send({
+        api: 'api/rest/customer/v1/check-rate',
+        params: {
+          method: 'POST',
+          headers: {
+            Authorization: args.jwt
+          },
+          body: {
+            data: {
+              type: 'check-rates',
+              attributes: {
+                'rateplan-id': args.rateplanId,
+                'number': args.number
+              }
+            }
+          }
+        }
+      }).then(function (response) {
+        if(response.data) {
+          return response.data
+        }
+      })
     }
   };
 });

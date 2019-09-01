@@ -3,6 +3,7 @@ define(function (require) {
     "en-US": {
       "accounts": {
         "title": "Accounts",
+        "description": "Accounts app description",
         "menuTitle": "Accounts",
         "table": {
           "headers": {
@@ -19,6 +20,7 @@ define(function (require) {
     "ru-RU": {
       "accounts": {
         "title": "Аккаунты",
+        "description": "Описание модуля Аккаунты",
         "menuTitle": "Аккаунты",
         "table": {
           "headers": {

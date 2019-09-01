@@ -4,6 +4,9 @@ define(function (require) {
     components: {},
     data() {
       return {
+        page: 1,
+        perPage: 10,
+        pageCount: 0,
         expanded: [],
         headers: [
           {
@@ -47,7 +50,7 @@ define(function (require) {
             value: 'attributes.reject-calls',
           },
           {
-            text: this.$t('rates.table.headers.valid-from'),
+            text: this.$t('rates.table.headers.validFrom'),
             align: 'left',
             value: 'attributes.valid-from',
           },
@@ -109,14 +112,22 @@ define(function (require) {
     watch: {
       isAuthorized (isAuthorized) {
         if(isAuthorized) {
-          this.$store.dispatch('loadRates', this.authToken);
+          this.$store.dispatch('loadRates', {
+            jwt: this.authToken,
+            perPage: this.perPage,
+            page: this.page
+          });
         } else {
           this.$store.dispatch('setRates', []);
         }
       }
     },
     mounted () {
-      this.$store.dispatch('loadRates', this.authToken);
+      this.$store.dispatch('loadRates', {
+        jwt: this.authToken,
+        perPage: this.perPage,
+        page: this.page
+      });
     },
     filters: {
       yesOrNo (val) {

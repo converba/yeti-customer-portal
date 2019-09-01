@@ -1,0 +1,7 @@
+.rateplans-plugin-icon.v-icon:before {
+  content:"\F694"
+}
+
+.check-rate-dialog__input {
+  max-width: 440px;
+}

@@ -3,6 +3,7 @@ define(function (require) {
     "en-US": {
       "cdrs": {
         "title": "Calls Details",
+        "description": "CDRs app description",
         "menuTitle": "Calls Details",
         "table": {
           "headers": {
@@ -25,6 +26,7 @@ define(function (require) {
     "ru-RU": {
       "cdrs": {
         "title": "Журнал звонков",
+        "description": "Описание модуля CDRs",
         "menuTitle": "Журнал звонков",
         "table": {
           "headers": {
