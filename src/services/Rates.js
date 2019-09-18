@@ -42,7 +42,8 @@ define(function (require) {
         params: {
           method: 'POST',
           headers: {
-            Authorization: args.jwt
+            Authorization: args.jwt,
+            'Content-Type': 'application/vnd.api+json'
           },
           body: {
             data: {
