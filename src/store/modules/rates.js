@@ -5,14 +5,16 @@ define(function (require) {
   return {
     state: {
       rates: [],
+      ratesTotal: 0,
       checkedRates: []
     },
     actions: {
       loadRates ({ commit }, reqData) {
         ratesService.getRates(reqData)
-          .then(function (rates) {
-            if(rates) {
-              commit('SET_RATES', rates)
+          .then(function (data) {
+            if(data.rates && data.totalCount) {
+              commit('SET_RATES', data.rates);
+              commit('SET_RATES_TOTAL', data.totalCount)
             }
           })
           .catch((error) => {
@@ -45,6 +47,9 @@ define(function (require) {
       setRates ({ commit }, rates) {
         commit('SET_RATES', rates)
       },
+      setRatesTotal ({ commit }, ratesTotal) {
+        commit('SET_RATES_TOTAL', ratesTotal)
+      },
       setCheckedRates ({ commit }, checkedRates) {
         commit('SET_CHECKED_RATES', checkedRates)
       }
@@ -53,6 +58,9 @@ define(function (require) {
       SET_RATES (state, rates) {
         Vue.set(state, 'rates', rates)
       },
+      SET_RATES_TOTAL (state, ratesTotal) {
+        Vue.set(state, 'ratesTotal', ratesTotal)
+      },
       SET_CHECKED_RATES (state, checkedRates) {
         Vue.set(state, 'checkedRates', checkedRates)
       }
@@ -60,6 +68,9 @@ define(function (require) {
     getters: {
       rates (state) {
         return state.rates
+      },
+      ratesTotal (state) {
+        return state.ratesTotal
       },
       checkedRates (state) {
         return state.checkedRates
