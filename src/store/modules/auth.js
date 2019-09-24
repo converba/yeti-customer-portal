@@ -20,23 +20,24 @@ define(function (require) {
       },
       loadAuthToken({ commit }, userData, highPrivacyMode) {
         window.localStorage.removeItem('authToken');
-        authService.getToken(userData)
-          .catch((err) => {
-            commit('SET_AUTH_TOKEN', '');
-            commit('SET_AUTHORIZED_STATUS', false);
-          })
-          .then(function (token) {
-            if(token) {
-              commit('SET_AUTH_TOKEN', token);
-              commit('SET_AUTHORIZED_STATUS', true);
-              if(highPrivacyMode !== true) {
-                window.localStorage.setItem('authToken', token);
+        try {
+          authService.getToken(userData)
+            .then(function (token) {
+              if(token) {
+                commit('SET_AUTH_TOKEN', token);
+                commit('SET_AUTHORIZED_STATUS', true);
+                if(highPrivacyMode !== true) {
+                  window.localStorage.setItem('authToken', token);
+                }
+              } else {
+                commit('SET_AUTH_TOKEN', '');
+                commit('SET_AUTHORIZED_STATUS', false);
               }
-            } else {
-              commit('SET_AUTH_TOKEN', '');
-              commit('SET_AUTHORIZED_STATUS', false);
-            }
-          });
+            });
+        } catch (e) {
+          commit('SET_AUTH_TOKEN', '');
+          commit('SET_AUTHORIZED_STATUS', false);
+        }
       }
     },
     mutations: {

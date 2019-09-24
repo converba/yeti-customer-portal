@@ -7,25 +7,25 @@ define(function (require) {
       const page = args.page || '';
       if(!args.jwt) {
         throw new Error('Auth error: didn\'t authorized')
-      } else {
-        return Request.send({
-          api: `api/rest/customer/v1/rates?page[size]=${perPage}&page[number]=${page}`,
-          params: {
-            method: 'GET',
-            headers: {
-              Authorization: args.jwt,
-              'Content-Type': 'application/vnd.api+json'
-            }
-          }
-        }).then(function (response) {
-          if(response.data) {
-            return {
-              rates: response.data,
-              totalCount: response.meta['total-count']
-            }
-          }
-        })
       }
+
+      return Request.send({
+        api: `api/rest/customer/v1/rates?page[size]=${perPage}&page[number]=${page}`,
+        params: {
+          method: 'GET',
+          headers: {
+            Authorization: args.jwt,
+            'Content-Type': 'application/vnd.api+json'
+          }
+        }
+      }).then(function (response) {
+        if(response.data) {
+          return {
+            rates: response.data,
+            totalCount: response.meta['total-count']
+          }
+        }
+      })
     },
     checkRate (args) {
       if(!args.jwt || typeof(args.jwt) === 'undefined') {

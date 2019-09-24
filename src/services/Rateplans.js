@@ -3,7 +3,7 @@ define(function (require) {
 
   return {
     getRateplans (jwt) {
-      if(typeof(jwt) === 'undefined') {
+      if(!jwt || typeof(jwt) === 'undefined') {
         throw new Error('Auth error: didn\'t authorized')
       } else {
         return Request.send({

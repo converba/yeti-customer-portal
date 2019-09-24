@@ -10,39 +10,37 @@ define(function (require) {
     },
     actions: {
       loadRates ({ commit }, reqData) {
-        ratesService.getRates(reqData)
-          .then(function (data) {
-            if(data.rates && data.totalCount) {
-              commit('SET_RATES', data.rates);
-              commit('SET_RATES_TOTAL', data.totalCount)
-            }
-          })
-          .catch((error) => {
-            if (error) {
-              commit('SET_AUTH_TOKEN', '');
-              commit('SET_AUTHORIZED_STATUS', false);
-              commit('SET_SHOW_AUTH_DIALOG', true);
-              window.localStorage.removeItem('authToken');
-            }
-          });
+        try {
+          ratesService.getRates(reqData)
+            .then(function (data) {
+              if(data.rates && data.totalCount) {
+                commit('SET_RATES', data.rates);
+                commit('SET_RATES_TOTAL', data.totalCount)
+              }
+            })
+        } catch (e) {
+          commit('SET_AUTH_TOKEN', '');
+          commit('SET_AUTHORIZED_STATUS', false);
+          commit('SET_SHOW_AUTH_DIALOG', true);
+          window.localStorage.removeItem('authToken');
+        }
       },
       checkRate ({ commit }, data) {
-        ratesService.checkRate(data)
-          .then(function (responseData) {
-            if(responseData
-              && responseData.attributes
-              && responseData.attributes.hasOwnProperty('rates')) {
-              commit('SET_CHECKED_RATES', responseData.attributes.rates)
-            }
-          })
-          .catch((error) => {
-            /* if (error) {
-              commit('SET_AUTH_TOKEN', '');
-              commit('SET_AUTHORIZED_STATUS', false);
-              commit('SET_SHOW_AUTH_DIALOG', true);
-              window.localStorage.removeItem('authToken');
-            } */
-          });
+        try {
+          ratesService.checkRate(data)
+            .then(function (responseData) {
+              if(responseData
+                && responseData.attributes
+                && responseData.attributes.hasOwnProperty('rates')) {
+                commit('SET_CHECKED_RATES', responseData.attributes.rates)
+              }
+            })
+        } catch (e) {
+          commit('SET_AUTH_TOKEN', '');
+          commit('SET_AUTHORIZED_STATUS', false);
+          commit('SET_SHOW_AUTH_DIALOG', true);
+          window.localStorage.removeItem('authToken');
+        }
       },
       setRates ({ commit }, rates) {
         commit('SET_RATES', rates)
