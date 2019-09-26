@@ -22,23 +22,26 @@ define(function (require) {
 
   return {
     send (args) {
-      if(!args.api) {
-        throw new Error('Request error: api not found')
-      }
+      return new Promise((resolve, reject) => {
+        if(!args.api) {
+          reject(new Error('Request error: api not found'))
+        }
 
-      return Request(args)
-        .then((response) => {
-          if (response.ok) {
-            return response.json()
-          }
-          throw new Error('Api response error')
-        })
-        .catch((error) => {
-          if (error) {
-            console.log(error)
-          }
-          throw new Error('Api response error')
-        })
+        Request(args)
+          .then((response) => {
+            if (response.ok) {
+              resolve(response.json());
+            } else {
+              reject(new Error('Api response error: incorrect JSON data'))
+            }
+          })
+          .catch((error) => {
+            if (error) {
+              console.log(error)
+            }
+            reject(error)
+          })
+      });
     }
   };
 });

@@ -3,23 +3,27 @@ define(function (require) {
 
   return {
     getRateplans (jwt) {
-      if(!jwt || typeof(jwt) === 'undefined') {
-        throw new Error('Auth error: didn\'t authorized')
-      } else {
-        return Request.send({
-          api: 'api/rest/customer/v1/rateplans',
-          params: {
-            method: 'GET',
-            headers: {
-              Authorization: jwt
+      return new Promise((resolve, reject) => {
+        if(!jwt || typeof(jwt) === 'undefined') {
+          reject(new Error('Auth error: didn\'t authorized'))
+        } else {
+          Request.send({
+            api: 'api/rest/customer/v1/rateplans',
+            params: {
+              method: 'GET',
+              headers: {
+                Authorization: jwt
+              }
             }
-          }
-        }).then(function (response) {
-          if(response.data) {
-            return response.data
-          }
-        })
-      }
+          }).then(function (response) {
+            if(response.data) {
+              resolve(response.data)
+            }
+          }).catch((e) => {
+            reject(new Error('Auth error: didn\'t authorized'))
+          })
+        }
+      })
     }
   };
 });

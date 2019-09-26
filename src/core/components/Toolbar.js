@@ -85,9 +85,9 @@ define(function (require) {
           
               <user-panel></user-panel>
           
-              <v-btn icon>
+              <!--<v-btn icon>
                 <v-icon>mdi-dots-vertical</v-icon>
-              </v-btn>
+              </v-btn>-->
           </v-toolbar-items>
           </v-toolbar>
         </v-card>

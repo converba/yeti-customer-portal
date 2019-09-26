@@ -8,19 +8,18 @@ define(function (require) {
     },
     actions: {
       loadAccounts ({ commit }, data) {
-        try {
-          accountsService.getAccounts(data)
-            .then(function (accountsList) {
-              if (accountsList) {
-                commit('SET_ACCOUNTS', accountsList)
-              }
-            })
-        } catch(e) {
-          commit('SET_AUTH_TOKEN', '');
-          commit('SET_AUTHORIZED_STATUS', false);
-          commit('SET_SHOW_AUTH_DIALOG', true);
-          window.localStorage.removeItem('authToken');
-        }
+        accountsService.getAccounts(data)
+          .then(function (accountsList) {
+            if (accountsList) {
+              commit('SET_ACCOUNTS', accountsList)
+            }
+          })
+          .catch((e) => {
+            commit('SET_AUTH_TOKEN', '');
+            commit('SET_AUTHORIZED_STATUS', false);
+            commit('SET_SHOW_AUTH_DIALOG', true);
+            window.localStorage.removeItem('authToken');
+          })
       },
       setAccounts ({ commit }, accountsList) {
         commit('SET_ACCOUNTS', accountsList)

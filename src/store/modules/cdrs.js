@@ -8,19 +8,18 @@ define(function (require) {
     },
     actions: {
       loadCdrs ({ commit }, data) {
-        try {
-          cdrsService.getCdrs(data)
-            .then(function (cdrsList) {
-              if (cdrsList) {
-                commit('SET_CDRS', cdrsList)
-              }
-            })
-        } catch(e) {
-          commit('SET_AUTH_TOKEN', '');
-          commit('SET_AUTHORIZED_STATUS', false);
-          commit('SET_SHOW_AUTH_DIALOG', true);
-          window.localStorage.removeItem('authToken');
-        }
+        cdrsService.getCdrs(data)
+          .then(function (cdrsList) {
+            if (cdrsList) {
+              commit('SET_CDRS', cdrsList)
+            }
+          })
+          .catch((e) => {
+            commit('SET_AUTH_TOKEN', '');
+            commit('SET_AUTHORIZED_STATUS', false);
+            commit('SET_SHOW_AUTH_DIALOG', true);
+            window.localStorage.removeItem('authToken');
+          })
       },
       setCdrs ({ commit }, cdrsList) {
         commit('SET_CDRS', cdrsList)

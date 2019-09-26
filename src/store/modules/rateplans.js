@@ -8,19 +8,17 @@ define(function (require) {
     },
     actions: {
       loadRateplans ({ commit }, data) {
-        try {
-          rateplansService.getRateplans(data)
-            .then(function (rateplans) {
-              if(rateplans) {
-                commit('SET_RATEPLANS', rateplans)
-              }
-            })
-        } catch (e) {
-          commit('SET_AUTH_TOKEN', '');
-          commit('SET_AUTHORIZED_STATUS', false);
-          commit('SET_SHOW_AUTH_DIALOG', true);
-          window.localStorage.removeItem('authToken');
-        }
+        rateplansService.getRateplans(data)
+          .then(function (rateplans) {
+            if(rateplans) {
+              commit('SET_RATEPLANS', rateplans)
+            }
+          }).catch((e) => {
+            commit('SET_AUTH_TOKEN', '');
+            commit('SET_AUTHORIZED_STATUS', false);
+            commit('SET_SHOW_AUTH_DIALOG', true);
+            window.localStorage.removeItem('authToken');
+          })
       },
       setRateplans ({ commit }, rateplans) {
         commit('SET_RATEPLANS', rateplans)
